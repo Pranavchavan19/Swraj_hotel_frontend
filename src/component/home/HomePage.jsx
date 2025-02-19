@@ -36,7 +36,7 @@ const HomePage = () => {
 
             <h4><a className="view-rooms-home" href="/rooms">All Rooms</a></h4>
 
-            <h2 className="home-services">Services at <span className="phegon-color">Phegon Hotel</span></h2>
+            <h2 className="home-services">Services at <span className="phegon-color">Swaraj Hotel</span></h2>
 
             {/* SERVICES SECTION */}
             <section className="service-section"><div className="service-card">
