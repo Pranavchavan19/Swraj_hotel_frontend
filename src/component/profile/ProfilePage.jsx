@@ -31,7 +31,6 @@ const ProfilePage = () => {
     const handleEditProfile = () => {
         navigate('/edit-profile');
     };
-
     return (
         <div className="profile-page">
             {user && <h2>Welcome, {user.name}</h2>}
