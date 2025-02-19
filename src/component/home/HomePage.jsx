@@ -66,7 +66,6 @@ const HomePage = () => {
             </section>
             {/* AVAILABLE ROOMS SECTION */}
             <section>
-
             </section>
         </div>
     );
