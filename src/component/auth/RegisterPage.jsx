@@ -51,7 +51,7 @@ function RegisterPage() {
                 setSuccessMessage('User registered successfully');
                 setTimeout(() => {
                     setSuccessMessage('');
-                    navigate('/');
+                    navigate('/login');
                 }, 3000);
             }
         }
