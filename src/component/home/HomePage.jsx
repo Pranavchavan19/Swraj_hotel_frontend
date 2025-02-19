@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import RoomResult from "../common/RoomResult";
 import RoomSearch from "../common/RoomSearch";
-
-
 const HomePage = () => {
 
     const [roomSearchResults, setRoomSearchResults] = useState([]);
