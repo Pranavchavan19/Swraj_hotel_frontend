@@ -100,6 +100,15 @@
 // export default AllRoomsPage;
 
 
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import ApiService from '../../service/ApiService';
 import Pagination from '../common/Pagination';
@@ -204,3 +213,5 @@ const AllRoomsPage = () => {
 };
 
 export default AllRoomsPage;
+
+
