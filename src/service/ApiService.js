@@ -5,7 +5,7 @@
 import axiosInstance from './axiosInstance';
 
 export default class ApiService {
-    static BASE_URL = 'http://localhost:4040';
+    static BASE_URL = 'https://hotel-management-backend-d4zf.onrender.com';
 
     /** AUTH **/
 

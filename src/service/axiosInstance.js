@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:4040',
+  baseURL: 'https://hotel-management-backend-d4zf.onrender.com',
 });
 
 axiosInstance.interceptors.request.use(
