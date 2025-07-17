@@ -1,0 +1,34 @@
+html.light {
+  --bg-color: white;
+  --text-color: black;
+  --card-bg: #f9f9f9;
+}
+
+html.dark {
+  --bg-color: #121212;
+  --text-color: #f4f4f4;
+  --card-bg: #1e1e1e;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+#theme_change_button {
+  padding: 8px 14px;
+  background-color: #007f86;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
