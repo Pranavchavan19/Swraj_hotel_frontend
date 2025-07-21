@@ -314,7 +314,7 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
                 <li>
                   <NavLink
                     to="/admin"
-                    className="text-md text-white bg-green-600 px-1 py-1 rounded-full dark:text-white bg- hover:text-blue-500"
+                    className="text-md text-white bg-green-600 px-3 py-1 rounded-full dark:text-white bg- hover:text-blue-500"
                   >
                     Admin
                   </NavLink>
