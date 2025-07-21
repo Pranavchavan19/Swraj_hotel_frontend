@@ -163,6 +163,188 @@
 // export default AddRoomPage;
 
 
+
+
+
+// import React, { useState, useEffect } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import ApiService from '../../service/ApiService';
+
+// const AddRoomPage = () => {
+//   const navigate = useNavigate();
+//   const [roomDetails, setRoomDetails] = useState({
+//     roomPhotoUrl: '',
+//     roomType: '',
+//     roomPrice: '',
+//     roomDescription: '',
+//   });
+//   const [file, setFile] = useState(null);
+//   const [preview, setPreview] = useState(null);
+//   const [error, setError] = useState('');
+//   const [success, setSuccess] = useState('');
+//   const [roomTypes, setRoomTypes] = useState([]);
+//   const [newRoomType, setNewRoomType] = useState(false);
+
+//   useEffect(() => {
+//   const fetchRoomTypes = async () => {
+//   try {
+//     const types = await ApiService.getRoomTypes();
+//     console.log('Fetched roomTypes:', types);
+
+//     if (Array.isArray(types)) {
+//       setRoomTypes(types);
+//     } else if (types.roomTypes && Array.isArray(types.roomTypes)) {
+//       setRoomTypes(types.roomTypes);
+//     } else if (types.data && Array.isArray(types.data)) {
+//       setRoomTypes(types.data); // ✅ Handle `data` field
+//     } else {
+//       setRoomTypes([]);
+//       console.error('Unexpected format from getRoomTypes:', types);
+//     }
+//   } catch (error) {
+//     console.error('Error fetching room types:', error.message);
+//   }
+// };
+
+//     fetchRoomTypes();
+//   }, []);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setRoomDetails(prevState => ({
+//       ...prevState,
+//       [name]: value,
+//     }));
+//   };
+
+//   const handleRoomTypeChange = (e) => {
+//     if (e.target.value === 'new') {
+//       setNewRoomType(true);
+//       setRoomDetails(prevState => ({ ...prevState, roomType: '' }));
+//     } else {
+//       setNewRoomType(false);
+//       setRoomDetails(prevState => ({ ...prevState, roomType: e.target.value }));
+//     }
+//   };
+
+//   const handleFileChange = (e) => {
+//     const selectedFile = e.target.files[0];
+//     if (selectedFile) {
+//       setFile(selectedFile);
+//       setPreview(URL.createObjectURL(selectedFile));
+//     } else {
+//       setFile(null);
+//       setPreview(null);
+//     }
+//   };
+
+//   const addRoom = async () => {
+//     if (!roomDetails.roomType || !roomDetails.roomPrice || !roomDetails.roomDescription) {
+//       setError('All room details must be provided.');
+//       setTimeout(() => setError(''), 5000);
+//       return;
+//     }
+
+//     if (!window.confirm('Do you want to add this room?')) {
+//       return;
+//     }
+
+//     try {
+//       const formData = new FormData();
+//       formData.append('roomType', roomDetails.roomType);
+//       formData.append('roomPrice', roomDetails.roomPrice);
+//       formData.append('roomDescription', roomDetails.roomDescription);
+
+//       if (file) {
+//         formData.append('photo', file);
+
+//       }
+//       console.log(localStorage.getItem("token"))
+// console.log(localStorage.getItem("role"))  // should log: ADMIN
+
+
+//       const result = await ApiService.addRoom(formData);
+//       if (result.statusCode === 200) {
+//         setSuccess('Room added successfully.');
+//         setTimeout(() => {
+//           setSuccess('');
+//           navigate('/admin/manage-rooms');
+//         }, 3000);
+//       }
+//     } catch (error) {
+//       setError(error.response?.data?.message || error.message);
+//       setTimeout(() => setError(''), 5000);
+//     }
+//   };
+
+//   return (
+//     <div className="edit-room-container">
+//       <h2>Add New Room</h2>
+//       {error && <p className="error-message">{error}</p>}
+//       {success && <p className="success-message">{success}</p>}
+//       <div className="edit-room-form">
+//         <div className="form-group">
+//           {preview && (
+//             <img src={preview} alt="Room Preview" className="room-photo-preview" />
+//           )}
+//           <input
+//             type="file"
+//             name="roomPhoto"
+//             onChange={handleFileChange}
+//           />
+//         </div>
+
+//         <div className="form-group">
+//           <label>Room Type</label>
+//           <select value={roomDetails.roomType} onChange={handleRoomTypeChange}>
+//             <option value="">Select a room type</option>
+//             {Array.isArray(roomTypes) && roomTypes.map(type => (
+//               <option key={type} value={type}>{type}</option>
+//             ))}
+//             <option value="new">Other (please specify)</option>
+//           </select>
+//           {newRoomType && (
+//             <input
+//               type="text"
+//               name="roomType"
+//               placeholder="Enter new room type"
+//               value={roomDetails.roomType}
+//               onChange={handleChange}
+//             />
+//           )}
+//         </div>
+
+//         <div className="form-group">
+//           <label>Room Price</label>
+//           <input
+//             type="text"
+//             name="roomPrice"
+//             value={roomDetails.roomPrice}
+//             onChange={handleChange}
+//           />
+//         </div>
+
+//         <div className="form-group">
+//           <label>Room Description</label>
+//           <textarea
+//             name="roomDescription"
+//             value={roomDetails.roomDescription}
+//             onChange={handleChange}
+//           ></textarea>
+//         </div>
+
+//         <button className="update-button" onClick={addRoom}>Add Room</button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AddRoomPage;
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ApiService from '../../service/ApiService';
@@ -183,44 +365,39 @@ const AddRoomPage = () => {
   const [newRoomType, setNewRoomType] = useState(false);
 
   useEffect(() => {
-  const fetchRoomTypes = async () => {
-  try {
-    const types = await ApiService.getRoomTypes();
-    console.log('Fetched roomTypes:', types);
-
-    if (Array.isArray(types)) {
-      setRoomTypes(types);
-    } else if (types.roomTypes && Array.isArray(types.roomTypes)) {
-      setRoomTypes(types.roomTypes);
-    } else if (types.data && Array.isArray(types.data)) {
-      setRoomTypes(types.data); // ✅ Handle `data` field
-    } else {
-      setRoomTypes([]);
-      console.error('Unexpected format from getRoomTypes:', types);
-    }
-  } catch (error) {
-    console.error('Error fetching room types:', error.message);
-  }
-};
+    const fetchRoomTypes = async () => {
+      try {
+        const types = await ApiService.getRoomTypes();
+        if (Array.isArray(types)) {
+          setRoomTypes(types);
+        } else if (types?.roomTypes && Array.isArray(types.roomTypes)) {
+          setRoomTypes(types.roomTypes);
+        } else if (types?.data && Array.isArray(types.data)) {
+          setRoomTypes(types.data);
+        } else {
+          setRoomTypes([]);
+          console.error('Unexpected roomTypes format:', types);
+        }
+      } catch (error) {
+        console.error('Error fetching room types:', error.message);
+      }
+    };
 
     fetchRoomTypes();
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setRoomDetails(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
+    setRoomDetails(prev => ({ ...prev, [name]: value }));
   };
 
   const handleRoomTypeChange = (e) => {
     if (e.target.value === 'new') {
       setNewRoomType(true);
-      setRoomDetails(prevState => ({ ...prevState, roomType: '' }));
+      setRoomDetails(prev => ({ ...prev, roomType: '' }));
     } else {
       setNewRoomType(false);
-      setRoomDetails(prevState => ({ ...prevState, roomType: e.target.value }));
+      setRoomDetails(prev => ({ ...prev, roomType: e.target.value }));
     }
   };
 
@@ -242,25 +419,17 @@ const AddRoomPage = () => {
       return;
     }
 
-    if (!window.confirm('Do you want to add this room?')) {
-      return;
-    }
+    if (!window.confirm('Do you want to add this room?')) return;
 
     try {
       const formData = new FormData();
       formData.append('roomType', roomDetails.roomType);
       formData.append('roomPrice', roomDetails.roomPrice);
       formData.append('roomDescription', roomDetails.roomDescription);
-
-      if (file) {
-        formData.append('photo', file);
-
-      }
-      console.log(localStorage.getItem("token"))
-console.log(localStorage.getItem("role"))  // should log: ADMIN
-
+      if (file) formData.append('photo', file);
 
       const result = await ApiService.addRoom(formData);
+
       if (result.statusCode === 200) {
         setSuccess('Room added successfully.');
         setTimeout(() => {
@@ -275,31 +444,31 @@ console.log(localStorage.getItem("role"))  // should log: ADMIN
   };
 
   return (
-    <div className="edit-room-container">
-      <h2>Add New Room</h2>
-      {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">{success}</p>}
-      <div className="edit-room-form">
-        <div className="form-group">
-          {preview && (
-            <img src={preview} alt="Room Preview" className="room-photo-preview" />
-          )}
-          <input
-            type="file"
-            name="roomPhoto"
-            onChange={handleFileChange}
-          />
+    <div className="max-w-3xl bg-[#e0f2f1] mx-auto px-4 py-8">
+      <h2 className="text-2xl font-bold mb-4">Add New Room</h2>
+      {error && <p className="text-red-500 mb-4">{error}</p>}
+      {success && <p className="text-green-500 mb-4">{success}</p>}
+
+      <div className="bg-gray-100 shadow rounded-3xl p-6 space-y-6">
+        <div>
+          {preview && <img src={preview} alt="Room Preview" className="w-full h-48 object-cover rounded mb-2" />}
+          <input type="file" onChange={handleFileChange} className="w-full border p-2 rounded" />
         </div>
 
-        <div className="form-group">
-          <label>Room Type</label>
-          <select value={roomDetails.roomType} onChange={handleRoomTypeChange}>
+        <div>
+          <label className="block mb-1 font-medium">Room Type</label>
+          <select
+            value={roomDetails.roomType}
+            onChange={handleRoomTypeChange}
+            className="w-full border p-2 rounded"
+          >
             <option value="">Select a room type</option>
-            {Array.isArray(roomTypes) && roomTypes.map(type => (
+            {roomTypes.map((type) => (
               <option key={type} value={type}>{type}</option>
             ))}
             <option value="new">Other (please specify)</option>
           </select>
+
           {newRoomType && (
             <input
               type="text"
@@ -307,30 +476,38 @@ console.log(localStorage.getItem("role"))  // should log: ADMIN
               placeholder="Enter new room type"
               value={roomDetails.roomType}
               onChange={handleChange}
+              className="mt-2 w-full border p-2 rounded"
             />
           )}
         </div>
 
-        <div className="form-group">
-          <label>Room Price</label>
+        <div>
+          <label className="block mb-1 font-medium">Room Price</label>
           <input
             type="text"
             name="roomPrice"
             value={roomDetails.roomPrice}
             onChange={handleChange}
+            className="w-full border p-2 rounded"
           />
         </div>
 
-        <div className="form-group">
-          <label>Room Description</label>
+        <div>
+          <label className="block mb-1 font-medium">Room Description</label>
           <textarea
             name="roomDescription"
             value={roomDetails.roomDescription}
             onChange={handleChange}
-          ></textarea>
+            className="w-full border p-2 rounded h-24"
+          />
         </div>
 
-        <button className="update-button" onClick={addRoom}>Add Room</button>
+        <button
+          onClick={addRoom}
+          className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-full transition"
+        >
+          Add Room
+        </button>
       </div>
     </div>
   );

@@ -97,6 +97,9 @@
 
 
 
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ApiService from '../../service/ApiService';
@@ -116,7 +119,7 @@ const ManageRoomPage = () => {
     const fetchRooms = async () => {
       try {
         const response = await ApiService.getAllRooms();
-        const allRooms = response.roomList || []; // fallback if response is undefined
+        const allRooms = response.roomList || [];
         setRooms(allRooms);
         setFilteredRooms(allRooms);
       } catch (error) {
@@ -127,19 +130,17 @@ const ManageRoomPage = () => {
     const fetchRoomTypes = async () => {
       try {
         const types = await ApiService.getRoomTypes();
-
-        // ✅ handle API returning an object like { roomTypes: [...] }
         if (Array.isArray(types)) {
           setRoomTypes(types);
         } else if (Array.isArray(types.roomTypes)) {
           setRoomTypes(types.roomTypes);
         } else {
           console.error("Invalid roomTypes format:", types);
-          setRoomTypes([]); // fallback
+          setRoomTypes([]);
         }
       } catch (error) {
         console.error('Error fetching room types:', error.message);
-        setRoomTypes([]); // fallback on error
+        setRoomTypes([]);
       }
     };
 
@@ -160,10 +161,9 @@ const ManageRoomPage = () => {
       const filtered = rooms.filter((room) => room.roomType === type);
       setFilteredRooms(filtered);
     }
-    setCurrentPage(1); // Reset to first page after filtering
+    setCurrentPage(1);
   };
 
-  // Pagination
   const indexOfLastRoom = currentPage * roomsPerPage;
   const indexOfFirstRoom = indexOfLastRoom - roomsPerPage;
   const currentRooms = filteredRooms.slice(indexOfFirstRoom, indexOfLastRoom);
@@ -171,25 +171,30 @@ const ManageRoomPage = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className='all-rooms'>
-      <h2>All Rooms</h2>
-      <div
-        className='all-room-filter-div'
-        style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-      >
-        <div className='filter-select-div'>
-          <label>Filter by Room Type:</label>
-          <select value={selectedRoomType} onChange={handleRoomTypeChange}>
-            <option value="">All</option>
-            {roomTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-
-          <button className='add-room-button' onClick={() => navigate('/admin/add-room')}>
-            Add Room
+    <div className="p-6 max-w-6xl bg-[#e0f2f1] mx-auto">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        <h2 className="text-2xl font-semibold mb-4 sm:mb-0">All Rooms</h2>
+        <div className="flex flex-col sm:flex-row gap-4 items-center">
+          <div className="flex items-center gap-2">
+            <label className="font-medium">Room Type:</label>
+            <select
+              value={selectedRoomType}
+              onChange={handleRoomTypeChange}
+              className="border border-gray-300 rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            >
+              <option value="">All</option>
+              {roomTypes.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+          <button
+            onClick={() => navigate('/admin/add-room')}
+            className="bg-purple-600 text-white px-4 py-2 rounded-full hover:bg-purple-700 transition"
+          >
+            + Add Room
           </button>
         </div>
       </div>
@@ -207,6 +212,318 @@ const ManageRoomPage = () => {
 };
 
 export default ManageRoomPage;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
