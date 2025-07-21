@@ -235,7 +235,7 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
             {/* Top Row: Brand + Auth */}
             <div className="flex justify-between items-center">
               {/* Brand */}
-              <div className="text-xl font-bold text-teal-600 mr-3 dark:text-white whitespace-nowrap">
+              <div className="text-2xl font-bold text-teal-600 mr-3 dark:text-white whitespace-nowrap">
                 <NavLink to="/home">Swaraj Hotel</NavLink>
               </div>
 
@@ -245,13 +245,13 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
                   <>
                     <NavLink
                       to="/login"
-                      className="text-sm text-white bg-green-700 px-2 py-1 rounded-full  dark:text-white hover:text-blue-500"
+                      className="text-md text-white bg-green-700 px-3 py-1 rounded-full  dark:text-white hover:text-blue-500"
                     >
                       Login
                     </NavLink>
                     <NavLink
                       to="/register"
-                      className="text-sm text-gray-700 dark:text-white hover:text-blue-500"
+                      className="text-md text-gray-700 dark:text-white hover:text-blue-500"
                     >
                       Register
                     </NavLink>
@@ -260,14 +260,14 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
                 {isAuthenticated && (
                   <button
                     onClick={handleLogout}
-                    className="text-sm  text-white px-2 py-1 rounded-full bg-red-500 dark:text-white hover:text-red-500"
+                    className="text-md  text-white px-3 py-1 rounded-full bg-red-500 dark:text-white hover:text-red-500"
                   >
                     Logout
                   </button>
                 )}
                 <button
                   onClick={handleThemeToggle}
-                  className="text-sm text-gray-700 bg-teal-400 px-1 py-1 rounded-full dark:text-white "
+                  className="text-md text-gray-700 bg-teal-400 px-2 py-1 rounded-full dark:text-white "
                 >
                   {theme === "light" ? "Dark" : "Light"} Mode
                 </button>
@@ -275,11 +275,11 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
             </div>
 
             {/* Bottom Row: Nav Links */}
-            <ul className="flex flex-wrap gap-3 text-gray-700 dark:text-gray-200">
+            <ul className="flex flex-wrap gap-4 text-gray-700 dark:text-gray-200">
               <li>
                 <NavLink
                   to="/home"
-                  className="text-sm text-gray-700 dark:text-white hover:text-blue-500"
+                  className=" text-md text-gray-700 dark:text-white hover:text-blue-500"
                 >
                   Home
                 </NavLink>
@@ -287,7 +287,7 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
               <li>
                 <NavLink
                   to="/rooms"
-                  className="text-sm text-gray-700 dark:text-white hover:text-blue-500"
+                  className="text-md text-gray-700 dark:text-white hover:text-blue-500"
                 >
                   Rooms
                 </NavLink>
@@ -295,7 +295,7 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
               <li>
                 <NavLink
                   to="/find-booking"
-                  className="text-sm text-gray-700 dark:text-white hover:text-blue-500"
+                  className="text-md text-gray-700 dark:text-white hover:text-blue-500"
                 >
                   Find my Booking
                 </NavLink>
@@ -304,7 +304,7 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
                 <li>
                   <NavLink
                     to="/profile"
-                    className="text-sm text-white bg-green-600 px-1 py-1 rounded-full dark:text-white hover:text-blue-500"
+                    className="text-md text-white bg-green-600 px-3 py-1 rounded-full dark:text-white hover:text-blue-500"
                   >
                     Profile
                   </NavLink>
@@ -314,7 +314,7 @@ className="flex-shrink-0 flex items-center text-xl font-thin text-teal-600 dark:
                 <li>
                   <NavLink
                     to="/admin"
-                    className="text-sm text-white bg-green-600 px-1 py-1 rounded-full dark:text-white bg- hover:text-blue-500"
+                    className="text-md text-white bg-green-600 px-1 py-1 rounded-full dark:text-white bg- hover:text-blue-500"
                   >
                     Admin
                   </NavLink>
